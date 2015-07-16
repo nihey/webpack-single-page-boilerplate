@@ -92,4 +92,9 @@ It also includes the following plugins:
                           on webpack. It is used to emit a `index.html` file
                           along with it's images.
 
+# License
+
+This code is released under
+[CC0](http://creativecommons.org/publicdomain/zero/1.0/) (Public Domain)
+
 [webpack_link]: http://webpack.github.io/
