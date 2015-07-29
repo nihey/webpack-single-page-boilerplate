@@ -3,15 +3,22 @@
  */
 var $ = require('cheerio'),
     md5 = require('MD5'),
+    htmlMinify = require('html-minifier').minify,
     fs = require('fs'),
     path = require('path');
 
 function HtmlParserWebpackPlugin() {
   this.files = Array.prototype.slice.call(arguments);
+  this.production = false;
 }
 
 HtmlParserWebpackPlugin.prototype.apply = function(compiler) {
   this.compiler = compiler;
+  // XXX I could try to find a better way to check this.
+  // Note: 'compiler.options.debug' options is not ovewritten by cli options
+  // when it is on 'webpack.config.js'.
+  this.production = process.argv.indexOf('--optimize-minimize') !== -1 ||
+                    process.argv.indexOf('-p') !== -1;
   this.files.forEach(function(file) {
     compiler.plugin('emit', this.compile.bind(this, file));
   }, this);
@@ -26,7 +33,16 @@ HtmlParserWebpackPlugin.prototype.compile = function(file, compilation, callback
       this.parse(element, 'src', compilation);
     }.bind(this));
 
-    this.createFile(compilation, file, html.html());
+    var htmlSource = html.html();
+    if (this.production) {
+      htmlSource = htmlMinify(htmlSource, {
+        preserveLineBreaks: false,
+        removeComments: true,
+        removeCommentsFromCDATA: true,
+        collapseWhitespace: true,
+      });
+    }
+    this.createFile(compilation, file, htmlSource);
     callback();
 };
 
