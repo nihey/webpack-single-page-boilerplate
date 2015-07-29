@@ -18,7 +18,8 @@ The general directory structure is:
 │       └── favicon.png
 ├── index.html
 ├── package.json
-├── plugins
+├── environment.json
+├── plugins/
 │   └── html-plugin.js
 ├── README.md
 ├── scripts/
@@ -30,6 +31,8 @@ The general directory structure is:
 
 - Your javascript entry point is `scripts/index.js`
 - Your style entry point is `styles/index.less`
+- 'environment.json' file provides optional environment variable settings,
+  but you can delete it if you don't need it.
 - The `plugins/html-plugin.js` file is better explained on the *About* section,
   with the `html-parser-plugin` plugin.
 
