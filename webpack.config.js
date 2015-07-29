@@ -1,7 +1,21 @@
 var webpack = require('webpack'),
     ExtractTextPlugin = require('extract-text-webpack-plugin'),
     HtmlPlugin = require('./plugins/html-plugin'),
-    path = require('path')
+    path = require('path');
+
+var getEnvironment = function() {
+  try {
+    // Try to import the environment module
+    return require('./environment.json');
+  } catch (error) {
+    // If it does not exist, return an empty object
+    if (error.code == 'MODULE_NOT_FOUND') {
+      return {};
+    }
+  }
+  // Return undefined if any other error occur
+  return undefined;
+};
 
 module.exports = {
   devtool: 'source-map',
@@ -32,9 +46,7 @@ module.exports = {
     new ExtractTextPlugin('[name].css'),
     new HtmlPlugin('index.html'),
     new webpack.DefinePlugin({
-      Config: JSON.stringify({
-        FIREBASE_URL: 'https://badify.firebaseio.com',
-      }),
+      Environment: JSON.stringify(getEnvironment()),
     }),
   ],
 
