@@ -2,7 +2,7 @@
  * near future.
  */
 var $ = require('cheerio'),
-    md5 = require('MD5'),
+    md5 = require('md5'),
     htmlMinify = require('html-minifier').minify,
     fs = require('fs'),
     path = require('path');

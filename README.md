@@ -2,6 +2,9 @@
 
 A boilerplate for a single page app using [webpack][webpack_link]
 
+[![Dependency
+Status](https://david-dm.org/nihey/webpack-single-page-boilerplate.png)](https://david-dm.org/nihey/webpack-single-page-boilerplate)
+
 # Why should I use it
 
 So far, this is the best way I found to build files like `index.html` into
