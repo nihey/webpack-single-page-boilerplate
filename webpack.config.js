@@ -51,7 +51,7 @@ module.exports = {
   ],
 
   resolve: {
-    root: path.join(__dirname, 'js'),
+    root: path.join(__dirname, 'scripts'),
     extensions: ['', '.js', '.json'],
   },
 
