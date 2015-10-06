@@ -2,6 +2,8 @@
 
 A boilerplate for a single page app using [webpack][webpack_link]
 
+[![Build
+Status](https://travis-ci.org/nihey/webpack-single-page-boilerplate.svg)](https://travis-ci.org/nihey/webpack-single-page-boilerplate)
 [![Dependency
 Status](https://david-dm.org/nihey/webpack-single-page-boilerplate.png)](https://david-dm.org/nihey/webpack-single-page-boilerplate)
 
