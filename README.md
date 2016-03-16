@@ -78,9 +78,9 @@ Becomes this:
 ```
 
 Notice that the `favicon.png` file was replaced with
-`84eafba88857e5fd2e85d63beaf3fb31.png`. This happened because the favicon.png
-file link was marked with a `!` prepending it - it tells the plugin that the
-url should be bundled and replaced.
+`84eafba88857e5fd2e85d63beaf3fb31.png`. [indexhtml-webpack-plugin](https://github.com/unbroken-dome/indexhtml-webpack-plugin)
+parses your `index.html` content and properly replace it on your
+`dist/index.html`.
 
 # About
 
@@ -95,6 +95,7 @@ This boilerplate includes the following loaders:
 
 It also includes the following plugins:
 
+  - `indexhtml-webpack-plugin`: Parses your html files content and build them.
   - `extract-text-webpack-plugin`: Extract css text from bundled styles.
   - `html-parser-plugin`: Custom experimental plugin to enable html parsing
                           on webpack. It is used to emit a `index.html` file
