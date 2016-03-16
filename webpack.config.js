@@ -27,7 +27,7 @@ module.exports = {
       },
       {
         test: /\.html$/,
-        loader: 'html?attrs=link:href img:src'
+        loader: 'html?attrs=link:href img:src',
       },
     ],
   },
