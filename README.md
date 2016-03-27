@@ -38,7 +38,7 @@ The general directory structure is:
   but you can delete it if you don't need it.
 
 This uses the [indexhtml-webpack-plugin](https://github.com/unbroken-dome/indexhtml-webpack-plugin)
-to build HTML files, replacing the `src` and `href` tags related to images, css, 
+to build HTML files, replacing the `src` and `href` tags related to images, css,
 and scripts into their corresponding file in `dist` directory. This way, an
 `index.html` file that looks like this:
 
