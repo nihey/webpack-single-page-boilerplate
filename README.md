@@ -24,6 +24,8 @@ The general directory structure is:
 ├── index.html
 ├── package.json
 ├── environment.json
+├── plugins/
+│   └── html-plugin.js
 ├── README.md
 ├── scripts/
 │   └── index.js
@@ -36,10 +38,11 @@ The general directory structure is:
 - Your style entry point is `styles/index.less`
 - 'environment.json' file provides optional environment variable settings,
   but you can delete it if you don't need it.
+- The `plugins/html-plugin.js` file is better explained on the *About* section,
+  with the `html-parser-plugin` plugin.
 
-This uses the [indexhtml-webpack-plugin](https://github.com/unbroken-dome/indexhtml-webpack-plugin)
-to build HTML files, replacing the `src` and `href` tags related to images, css,
-and scripts into their corresponding file in `dist` directory. This way, an
+There's a hack to build HTML files, replacing the `src` and `href` tags related
+to images into their corresponding file in `dist` directory. This way, a
 `index.html` file that looks like this:
 
 ```
@@ -47,12 +50,12 @@ and scripts into their corresponding file in `dist` directory. This way, an
 <html>
   <head>
     <title>Sample App</title>
-    <meta charset="utf-8">
-    <link href="assets/images/favicon.png" rel="icon">
-    <link href="styles/index.less" rel="stylesheet">
+    <meta charset="utf-8"/>
+    <link href="!assets/image/favicon.png" rel="icon"/>
+    <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <script src="scripts/index.js"></script>
+    <script src="script.js"></script>
   </body>
 </html>
 ```
@@ -66,13 +69,18 @@ Becomes this:
     <title>Sample App</title>
     <meta charset="utf-8">
     <link href="84eafba88857e5fd2e85d63beaf3fb31.png" rel="icon">
-    <link href="d41d8cd98f00b204e9800998ecf8427e.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
   </head>
   <body>
     <script src="script.js"></script>
   </body>
 </html>
 ```
+
+Notice that the `favicon.png` file was replaced with
+`84eafba88857e5fd2e85d63beaf3fb31.png`. [indexhtml-webpack-plugin](https://github.com/unbroken-dome/indexhtml-webpack-plugin)
+parses your `index.html` content and properly replace it on your
+`dist/index.html`.
 
 # About
 
@@ -85,10 +93,13 @@ This boilerplate includes the following loaders:
   - `less-loader`: Style your pages with [less](http://lesscss.org/).
   - `style-loader`: Add exports of a module as style to DOM.
 
-It also uses the following plugins:
+It also includes the following plugins:
 
   - `indexhtml-webpack-plugin`: Parses your html files content and build them.
   - `extract-text-webpack-plugin`: Extract css text from bundled styles.
+  - `html-parser-plugin`: Custom experimental plugin to enable html parsing
+                          on webpack. It is used to emit a `index.html` file
+                          along with it's images.
 
 # License
 

@@ -16,27 +16,28 @@
     "less"
   ],
   "author": "Nihey Takizawa <nihey.takizawa@gmail.com>",
-  "license": "MIT",
+  "license": "CC0-1.0",
   "dependencies": {
     "babel-core": "^6.3.13",
     "babel-loader": "^6.2.0",
     "babel-preset-es2015": "^6.3.13",
     "babel-preset-stage-0": "^6.3.13",
+    "cheerio": "^0.20.0",
     "config": "^1.16.0",
     "css-loader": "^0.23.0",
     "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "^0.9.0",
+    "html-minifier": "^3.0.1",
     "img-loader": "^1.1.0",
     "json-loader": "^0.5.2",
     "less": "^2.5.1",
     "less-loader": "^2.2.0",
+    "md5": "^2.1.0",
     "node-libs-browser": "^1.0.0",
     "style-loader": "^0.13.0",
     "webpack": "^1.10.1"
   },
   "devDependencies": {
-    "eslint": "^1.6.0",
-    "html-loader": "^0.4.3",
-    "indexhtml-webpack-plugin": "^0.1.9"
+    "eslint": "^1.6.0"
   }
 }

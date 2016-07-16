@@ -1,14 +1,14 @@
 var webpack = require('webpack'),
     ExtractTextPlugin = require('extract-text-webpack-plugin'),
-    IndexHtmlPlugin = require('indexhtml-webpack-plugin'),
+    HtmlPlugin = require('./plugins/html-plugin'),
     path = require('path');
 
-var cssExtractTextPlugin = new ExtractTextPlugin('[contenthash].css');
+var cssExtractTextPlugin = new ExtractTextPlugin('[name].css');
 
 module.exports = {
   entry: {
     'script': './scripts/index.js',
-    'index.html': './index.html',
+    'style': './styles/index.less',
   },
 
   module: {
@@ -25,16 +25,12 @@ module.exports = {
         test: /\.less$/,
         loader: cssExtractTextPlugin.extract('style-loader', 'css-loader!less-loader'),
       },
-      {
-        test: /\.html$/,
-        loader: 'html?attrs=link:href img:src',
-      },
     ],
   },
 
   plugins: [
     cssExtractTextPlugin,
-    new IndexHtmlPlugin('index.html', 'index.html'),
+    new HtmlPlugin('index.html'),
     new webpack.DefinePlugin({
       Environment: JSON.stringify(require('config')),
     }),
