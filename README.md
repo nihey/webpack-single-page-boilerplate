@@ -21,9 +21,11 @@ The general directory structure is:
 ├── assets/
 │   └── image
 │       └── favicon.png
+├── config/
+│   ├── default.json
+│   └── production.json
 ├── index.html
 ├── package.json
-├── environment.json
 ├── plugins/
 │   └── html-plugin.js
 ├── README.md
@@ -36,16 +38,45 @@ The general directory structure is:
 
 - Your javascript entry point is `scripts/index.js`
 - Your style entry point is `styles/index.less`
-- 'environment.json' file provides optional environment variable settings,
-  but you can delete it if you don't need it.
 - The `plugins/html-plugin.js` file is better explained on the *About* section,
   with the `html-parser-plugin` plugin.
+
+[`config`][config_link] node module is being used, this way you can define
+your settings under config/{NODE_ENV}.json and build your project with
+different settings for different environments. Just change your `NODE_ENV`
+environment variable to build your project:
+
+### Example
+
+```
+# Uses 'config/default.json'
+$ npm run build
+# Uses 'config/default.json' overwritten by 'config/production.json'
+$ NODE_ENV=production npm run build
+# Uses 'config/default.json' overwritten by 'config/staging.json'
+$ NODE_ENV=staging npm run build
+# Uses 'config/default.json' overwritten by 'config/anything.json'
+$ NODE_ENV=anything npm run build
+```
+
+All config variables are available under the `Environment` global:
+
+```json
+# config/default.json
+{
+  "MY_BACKEND": "https://nihey.org"
+}
+```
+```javascript
+// => "https://nihey.org"
+console.log(Environment.MY_BACKEND)
+```
 
 There's a hack to build HTML files, replacing the `src` and `href` tags related
 to images into their corresponding file in `dist` directory. This way, a
 `index.html` file that looks like this:
 
-```
+```html
 <!DOCTYPE html>
 <html>
   <head>
@@ -62,7 +93,7 @@ to images into their corresponding file in `dist` directory. This way, a
 
 Becomes this:
 
-```
+```html
 <!DOCTYPE html>
 <html>
   <head>
@@ -107,3 +138,4 @@ This code is released under
 [CC0](http://creativecommons.org/publicdomain/zero/1.0/) (Public Domain)
 
 [webpack_link]: http://webpack.github.io/
+[config_link]: https://www.npmjs.com/package/config
