@@ -14,9 +14,11 @@
     "browser": true
   },
   "extends": "eslint:recommended",
-  "ecmaFeatures": {
-    modules: true,
-    "experimentalObjectRestSpread": true
+  "parserOptions": {
+    "ecmaFeatures": {
+      "modules": true,
+      "experimentalObjectRestSpread": true
+    }
   },
   "globals": {
     "require": false,
