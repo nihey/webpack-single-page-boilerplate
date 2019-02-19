@@ -6,24 +6,29 @@ var webpack = require('webpack'),
 var cssExtractTextPlugin = new ExtractTextPlugin('[name].css');
 
 module.exports = {
+  devServer: {
+    port: 8000,
+    historyApiFallback: true,
+  },
+
   entry: {
-    'script': './scripts/index.js',
-    'style': './styles/index.less',
+    'script': './src/index.js',
+    'style': './src/styles/index.scss',
   },
 
   module: {
-    loaders: [
+    rules: [
       { test: /\.json$/, loader: 'json-loader'},
       { test: /\.js$/, exclude: /(node_modules|bower_components)\//, loader: 'babel-loader'},
       { test: /\.(ttf.*|eot.*|woff.*|ogg|mp3)$/, loader: 'file-loader'},
-      { test: /.(png|jpe?g|gif|svg.*)$/, loader: 'file-loader!img-loader?optimizationLevel=7&progressive=true'},
+      { test: /.(png|jpe?g|gif|svg.*)$/, loader: 'file-loader'},
       {
         test: /\.css$/,
-        loader: cssExtractTextPlugin.extract('style-loader', 'css-loader'),
+        loader: cssExtractTextPlugin.extract('css-loader'),
       },
       {
-        test: /\.less$/,
-        loader: cssExtractTextPlugin.extract('style-loader', 'css-loader!less-loader'),
+        test: /\.scss$/,
+        loader: cssExtractTextPlugin.extract('css-loader!sass-loader'),
       },
     ],
   },
@@ -37,8 +42,10 @@ module.exports = {
   ],
 
   resolve: {
-    root: path.join(__dirname, 'scripts'),
-    extensions: ['', '.js', '.json'],
+    modules: [
+      path.resolve(__dirname, 'src'),
+      path.resolve(__dirname, 'node_modules'),
+    ],
   },
 
   output: {
