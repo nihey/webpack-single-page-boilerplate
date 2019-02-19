@@ -37,7 +37,7 @@ module.exports = {
     cssExtractTextPlugin,
     new HtmlPlugin('index.html'),
     new webpack.DefinePlugin({
-      Environment: JSON.stringify(require('config')),
+      CONFIG: JSON.stringify(require('config')),
     }),
   ],
 

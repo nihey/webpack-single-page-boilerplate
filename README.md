@@ -18,26 +18,28 @@ bundling using only [webpack][webpack_link].
 The general directory structure is:
 
 ```
-├── assets/
-│   └── image
+.
+├── assets
+│   └── images
 │       └── favicon.png
-├── config/
+├── babel.config.js
+├── config
 │   ├── default.json
 │   └── production.json
 ├── index.html
 ├── package.json
-├── plugins/
+├── plugins
 │   └── html-plugin.js
 ├── README.md
-├── scripts/
-│   └── index.js
-├── styles/
-│   └── index.less
+├── src
+│   ├── index.js
+│   └── styles
+│       └── index.scss
 └── webpack.config.js
 ```
 
-- Your javascript entry point is `scripts/index.js`
-- Your style entry point is `styles/index.less`
+- Your javascript entry point is `src/index.js`
+- Your style entry point is `src/styles/index.scss`
 - The `plugins/html-plugin.js` file is better explained on the *About* section,
   with the `html-parser-plugin` plugin.
 
@@ -59,17 +61,17 @@ $ NODE_ENV=staging npm run build
 $ NODE_ENV=anything npm run build
 ```
 
-All config variables are available under the `Environment` global:
+All config variables are available under the `CONFIG` global:
 
 ```json
 # config/default.json
 {
-  "MY_BACKEND": "https://nihey.org"
+  "MY_API_URL": "https://nihey.org"
 }
 ```
 ```javascript
 // => "https://nihey.org"
-console.log(Environment.MY_BACKEND)
+console.log(CONFIG.MY_API_URL)
 ```
 
 There's a hack to build HTML files, replacing the `src` and `href` tags related
@@ -121,7 +123,7 @@ This boilerplate includes the following loaders:
   - `file-loader`: Call `require` for binary files.
   - `img-loader`: Optimize image compression.
   - `json-loader`: Call `require` for `json` files.
-  - `less-loader`: Style your pages with [less](http://lesscss.org/).
+  - `scss-loader`: Style your pages with [scss](https://sass-lang.com/).
   - `style-loader`: Add exports of a module as style to DOM.
 
 It also includes the following plugins:
@@ -137,5 +139,5 @@ It also includes the following plugins:
 This code is released under
 [CC0](http://creativecommons.org/publicdomain/zero/1.0/) (Public Domain)
 
-[webpack_link]: http://webpack.github.io/
+[webpack_link]: https://webpack.js.org/
 [config_link]: https://www.npmjs.com/package/config
