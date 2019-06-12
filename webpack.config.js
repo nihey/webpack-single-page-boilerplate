@@ -1,7 +1,7 @@
-var webpack = require('webpack'),
-    ExtractTextPlugin = require('extract-text-webpack-plugin'),
-    HtmlPlugin = require('./plugins/html-plugin'),
-    path = require('path');
+const webpack = require("webpack");
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const HtmlWebPackPlugin = require("html-webpack-plugin");
+const path = require('path');
 
 var cssExtractTextPlugin = new ExtractTextPlugin('[name].css');
 
@@ -35,7 +35,11 @@ module.exports = {
 
   plugins: [
     cssExtractTextPlugin,
-    new HtmlPlugin('index.html'),
+    new HtmlWebPackPlugin({
+      template: "./index.html",
+      filename: "./index.html",
+      favicon: "./assets/images/favicon.png",
+    }),
     new webpack.DefinePlugin({
       CONFIG: JSON.stringify(require('config')),
     }),

@@ -28,8 +28,6 @@ The general directory structure is:
 │   └── production.json
 ├── index.html
 ├── package.json
-├── plugins
-│   └── html-plugin.js
 ├── README.md
 ├── src
 │   ├── index.js
@@ -40,8 +38,6 @@ The general directory structure is:
 
 - Your javascript entry point is `src/index.js`
 - Your style entry point is `src/styles/index.scss`
-- The `plugins/html-plugin.js` file is better explained on the *About* section,
-  with the `html-parser-plugin` plugin.
 
 [`config`][config_link] node module is being used, this way you can define
 your settings under config/{NODE_ENV}.json and build your project with
@@ -74,47 +70,6 @@ All config variables are available under the `CONFIG` global:
 console.log(CONFIG.MY_API_URL)
 ```
 
-There's a hack to build HTML files, replacing the `src` and `href` tags related
-to images into their corresponding file in `dist` directory. This way, a
-`index.html` file that looks like this:
-
-```html
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Sample App</title>
-    <meta charset="utf-8"/>
-    <link href="!assets/image/favicon.png" rel="icon"/>
-    <link rel="stylesheet" href="style.css">
-  </head>
-  <body>
-    <script src="script.js"></script>
-  </body>
-</html>
-```
-
-Becomes this:
-
-```html
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Sample App</title>
-    <meta charset="utf-8">
-    <link href="84eafba88857e5fd2e85d63beaf3fb31.png" rel="icon">
-    <link rel="stylesheet" href="style.css">
-  </head>
-  <body>
-    <script src="script.js"></script>
-  </body>
-</html>
-```
-
-Notice that the `favicon.png` file was replaced with
-`84eafba88857e5fd2e85d63beaf3fb31.png`. [indexhtml-webpack-plugin](https://github.com/unbroken-dome/indexhtml-webpack-plugin)
-parses your `index.html` content and properly replace it on your
-`dist/index.html`.
-
 # About
 
 This boilerplate includes the following loaders:
@@ -128,11 +83,7 @@ This boilerplate includes the following loaders:
 
 It also includes the following plugins:
 
-  - `indexhtml-webpack-plugin`: Parses your html files content and build them.
   - `extract-text-webpack-plugin`: Extract css text from bundled styles.
-  - `html-parser-plugin`: Custom experimental plugin to enable html parsing
-                          on webpack. It is used to emit a `index.html` file
-                          along with it's images.
 
 # License
 
