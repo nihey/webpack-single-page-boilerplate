@@ -33,7 +33,7 @@
     "@babel/preset-env": "^7.1.6",
     "@babel/preset-react": "^7.0.0",
     "@babel/runtime": "^7.4.2",
-    "ajv": "^6.8.1",
+    "ajv": "^6.12.3",
     "babel-loader": "^8.0.5",
     "cheerio": "^1.0.0-rc.2",
     "config": "^3.0.1",
